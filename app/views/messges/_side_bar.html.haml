@@ -1,0 +1,17 @@
+.side-contents
+  .side-header
+    .side-header__boxs
+      %p.side-header__boxs__name 
+        = current_user.name
+      %ul.side-header__boxs__icon
+        %li.side-header__boxs__icon__edit
+          = link_to "#" do
+            = icon("fa", "edit")
+        %li.side-header__boxs__icon__cog
+          = link_to edit_user_path(current_user) do
+            = icon("fa", "cog")
+  .side-content
+    = link_to "#" do
+      .group
+        %p.group__name shinji
+        %p.group__message メッセージ

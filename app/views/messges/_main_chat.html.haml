@@ -1,0 +1,31 @@
+.main-chat
+  .main-header
+    .main-header__left
+      %h2.main-header__left__name
+        test
+      %ul.groups
+        Member :
+        %li.group__name
+          shinji
+
+    .main-header__edit
+      = link_to "#" do
+        Edit
+  .messages 
+    .message
+      .message__user__info
+        %p.message__user__info__name
+          shinji
+        %p.message__user__info__date
+          2019/12/11(wed) 11:16:17
+      %p.messages__text
+        sample
+  .form
+    .form-for
+      .input-box 
+        %input{type: "text" ,placeholder: "type a message", class: "input-box-form"}
+        %label{class: "input-box__image", for: "message__image"}
+          =icon("fa", "image")
+          %input{type: "file", id: "message__image", class: "file-field"}
+      .send-btn
+        %input{type: "submit", class: "submit-btn", value: "Send"}
