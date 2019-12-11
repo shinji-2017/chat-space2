@@ -5,13 +5,15 @@
         = current_user.name
       %ul.side-header__boxs__icon
         %li.side-header__boxs__icon__edit
-          = link_to "#" do
+          = link_to new_group_path do
             = icon("fa", "edit")
         %li.side-header__boxs__icon__cog
           = link_to edit_user_path(current_user) do
             = icon("fa", "cog")
   .side-content
-    = link_to "#" do
-      .group
-        %p.group__name shinji
-        %p.group__message メッセージ
+    - current_user.groups.each do |group|
+      = link_to group_messages_path(group) do
+        .group
+          %p.group__name 
+            = group.name
+          %p.group__message メッセージ
