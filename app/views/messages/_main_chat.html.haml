@@ -2,30 +2,25 @@
   .main-header
     .main-header__left
       .main-header__left__name
-        test
+        = @group.name
       %ul.groups
         Member :
         %li.group__name
-          shinji
-
+          - @group.users.each do |user|
+            = user.name
     .main-header__edit
-      = link_to edit_group_path(current_user) do
+      = link_to edit_group_path(@group) do
         Edit
   .messages 
-    .message
-      .message__user__info
-        %p.message__user__info__name
-          shinji
-        %p.message__user__info__date
-          2019/12/11(wed) 11:16:17
-      %p.messages__text
-        sample
+    = render @messages
   .form
-    .form-for
-      .input-box 
-        %input{type: "text" ,placeholder: "type a message", class: "input-box-form"}
-        %label{class: "input-box__image", for: "message__image"}
-          =icon("fa", "image")
-          %input{type: "file", id: "message__image", class: "file-field"}
-      .send-btn
-        %input{type: "submit", class: "submit-btn", value: "Send"}
+    = form_for [@group, @message] do |f|
+      .form-for
+        .input-box 
+          = f.text_field :content, class: "input-box-form",placeholder: "type a message"
+          = f.label :image ,class: "input-box__image", for: "message__image" do
+            = icon("fa", "image")
+            = f.file_field :image , id: "message__image", class: "file-field"
+        .send-btn
+          = f.submit "Send", class: "submit-btn"
+        
