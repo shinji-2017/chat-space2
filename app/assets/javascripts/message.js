@@ -34,6 +34,31 @@ $(function(){
     return html
   }
 
+  var reloadMessages = function() {
+    var last_message_id = $(".message:last").data('id');
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      console.log(messages);
+      messages.forEach(function(message){
+        buildHtml(message);
+        let html = buildHtml(message);
+        $(".messages").append(html);
+        $(".messages").animate({scrollTop:$(".messages")[0].scrollHeight}, 500);
+      });
+    })
+    .fail(function() {
+      alert('error');
+    });
+  };
+  if(location.pathname.match(/messages/)){
+    setInterval(reloadMessages, 5000);
+  }
+
   $("#new_message").on("submit", function(e){
     e.preventDefault();
     var formData = new FormData(this);
