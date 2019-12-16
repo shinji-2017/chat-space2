@@ -2,7 +2,7 @@ $(function(){
 
   function buildHtml(message){
     
-    if (message.image.url) {
+    if (message.image) {
       var html = `<div class="message" data-id="${message.id}">
                   <div class="message__user__info">
                   <p class="message__user__info__name">
@@ -15,7 +15,7 @@ $(function(){
                   <p class="messages__text">
                   ${message.content}
                   </p>
-                  <img src="${message.image.url}"  width="200" height="200">
+                  <img src="${message.image}"  width="200" height="200">
                   </div>`
     }else{
       var html = `<div class="message" data-id="${message.id}">
